@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulação de Resolução</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: black;
+      color: white;
+      background-repeat: repeat;
+      background-size: auto;
+    }
+    img {
+      image-rendering: pixelated;
+      transition: all 0.3s ease;
+    }
+    select {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <img id="earth" src="https://i.imgur.com/eHlNR6M.png" width="256" height="256" alt="Resolução da Terra">
+  
+  <select id="resolution">
+    <option value="https://i.imgur.com/eHlNR6M.png">SELECIONE</option>
+    <option value="https://i.imgur.com/oDqRpdS.png">144p</option>
+    <option value="https://i.imgur.com/TsfhWf2.png">240p</option>
+    <option value="https://i.imgur.com/V0QObG7.png">480p</option>
+    <option value="https://i.imgur.com/OKnMcxI.png">720p</option>
+    <option value="https://media.tenor.com/jvsVBSMabc4AAAAe/rose-cat-give-give-rose-to-cat.png">1080p</option>
+  </select>
+
+  <script>
+    const earth = document.getElementById('earth');
+    const selector = document.getElementById('resolution');
+    const body = document.body;
+
+    const YOU_BACKGROUND = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+        <text x="0" y="50" font-size="40" fill="white" font-family="monospace">you</text>
+      </svg>
+    `);
+
+    selector.addEventListener('change', function () {
+      const selected = this.value;
+      earth.src = selected;
+
+      if (selected.includes('1080p') || selected.includes('rose-cat-give')) {
+        body.style.backgroundImage = `url('${YOU_BACKGROUND}')`;
+      } else {
+        body.style.backgroundImage = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
